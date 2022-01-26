@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
     serv_addr.sin_family=AF_INET;                //타입: ipv4
     serv_addr.sin_addr.s_addr=htonl(INADDR_ANY); //ip주소
     // serv_addr.sin_port=htons(atoi(argv[1]));     //port
-    // serv_addr.sin_port=htons(3555);
+    serv_addr.sin_port=htons(3555);
     
     //소켓과 서버 주소를 바인딩
     if(bind(serv_sock, (struct sockaddr*) &serv_addr, sizeof(serv_addr))==-1)
@@ -45,6 +45,11 @@ int main(int argc, char* argv[])
     /*-----데이터 전송-----*/
     char msg[] = "Hello this is server!\n";
     write(clnt_sock, msg, sizeof(msg));
+
+    // int pp = clnt_addr.sin_port;
+    // printf(clnt_sock);
+    // int pa = clnt_addr.sin_addr.s_addr;
+    // printf(pa);
     
     //소켓들 닫기
     close(clnt_sock);
